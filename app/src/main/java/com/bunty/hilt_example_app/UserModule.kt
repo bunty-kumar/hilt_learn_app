@@ -1,5 +1,6 @@
 package com.bunty.hilt_example_app
 
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -9,9 +10,7 @@ import dagger.hilt.components.SingletonComponent
 
 @InstallIn(ActivityComponent::class)
 @Module
-class UserModule {
-    @Provides
-    fun providesUserRepository(): UserRepository {
-        return FirebaseRepository()
-    }
+abstract class UserModule {
+    @Binds
+    abstract fun bindUserRepository(sqlRepository: SqlRepository): UserRepository
 }
