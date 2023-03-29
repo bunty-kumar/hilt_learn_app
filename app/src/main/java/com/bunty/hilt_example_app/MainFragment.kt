@@ -13,7 +13,7 @@ import javax.inject.Named
 class MainFragment : Fragment() {
 
     @Inject
-    @Named("firebase")
+    @FirebaseQualifiers
     lateinit var userRepository: UserRepository
 
     override fun onCreateView(

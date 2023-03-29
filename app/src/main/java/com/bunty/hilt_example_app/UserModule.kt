@@ -19,7 +19,7 @@ class UserModule {
     }
 
     @Provides
-    @Named("firebase")
+    @FirebaseQualifiers
     fun providesFirebaseRepository(): UserRepository {
         return FirebaseRepository()
     }
