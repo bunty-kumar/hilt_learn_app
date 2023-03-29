@@ -7,10 +7,20 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.components.FragmentComponent
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Named
 
 @InstallIn(ActivityComponent::class)
 @Module
-abstract class UserModule {
-    @Binds
-    abstract fun bindUserRepository(sqlRepository: SqlRepository): UserRepository
+class UserModule {
+    @Provides
+    @Named("sql")
+    fun providesSqlRepository(sqlRepository: SqlRepository): UserRepository {
+        return sqlRepository
+    }
+
+    @Provides
+    @Named("firebase")
+    fun providesFirebaseRepository(): UserRepository {
+        return FirebaseRepository()
+    }
 }
